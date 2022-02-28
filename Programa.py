@@ -8,7 +8,7 @@ with open("nobel.json") as fichero:
 #Importamos las funciones
 from Funciones import *
 
-existe =0
+
 #Menú del programa
 print("\n")
 print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
