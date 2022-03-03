@@ -1,6 +1,10 @@
 #Funciones de lectura para el archivo nobel.json
 
 #Función Ejercicio 1: Listar las categorías de premios nobel que se han entregado.
+from calendar import c
+from contextlib import nullcontext
+
+
 def ListarCategorias(nobel):
     listado=[]
     for categoria in nobel:
@@ -13,48 +17,71 @@ def ContarPremiados(fecha,nobel):
     id_premiados=[]
     for premiado in nobel:
         if premiado["year"]==fecha:
-            for elemento in premiado["laureates"]:
-                id_premiados.append(elemento["id"])
+            if not (premiado.get('laureates') is None):
+                for elemento in premiado["laureates"]:
+                    id_premiados.append(elemento["id"])
     return (len(id_premiados))
 
 
 #Función Ejercicio 3: Buscar el año y muestra los premiados con sus categorías y nombre.
-def PremiadosAno (fecha,nobel):
+def PremiadosAno (fecha,nobel,existe):
+    existe=1
+    nombres=[]
+    apellidos=[]
+    categorias=[]
     for premiado in nobel:
-        if premiado["year"]==fecha:
-            for laureated in premiado["laureates"]:
-                print("Nombre: ", laureated.get('firstname'))
-                print("Apellido: ", laureated.get('surname'))
-                print("Categoria: ", premiado["category"])
-                print("- - - - - - - - - - - - - - - - - - - - - - - - ")
+        if not (premiado.get('laureates') is None):
+            if premiado["year"]==fecha:
+                for laureated in premiado["laureates"]:
+                    nombres.append(laureated.get('firstname'))
+                    apellidos.append(laureated.get('surname'))
+                    categorias.append(premiado["category"])
+        else:
+            existe=0  
+    if nombres !=[]:
+        existe=1
+    return nombres,apellidos,categorias,existe
+
                 
 
 #Función Ejercicio 4: Buscar el apellido y muestra categoría, año y motivación.
-def EncontrarPremiado(apellido,nobel):
-    try:
-        for elemento in nobel:
-            for laureated in elemento["laureates"]:
-                if laureated.get('surname') == apellido:
-                    print("Nombre: ", laureated.get('firstname'))
-                    print("Apellido: ", laureated.get('surname'))
-                    print("Motivacion: ", laureated.get('motivation'))
-                    print("Categoria: ", elemento["category"])
-                    print("Año:", elemento["year"])
-                    print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-    except:
-        laureated.get('surname') != apellido
-
+def EncontrarPremiado(apellido,nobel,existe):
+    existe=1
+    nombres=[]
+    apellidos=[]
+    categorias=[]
+    motivaciones=[]
+    fechas=[]
+    for listado in nobel:
+        if not (listado.get('laureates') is None):
+            for premiado in listado['laureates']:
+                if premiado.get('surname') == apellido:
+                    nombres.append(premiado.get('firstname'))
+                    apellidos.append(premiado.get('surname'))
+                    categorias.append(listado.get("category"))
+                    motivaciones.append(premiado.get('motivation'))
+                    fechas.append(listado.get("year"))
+        else:
+            existe=0  
+    if nombres !=[]:
+        existe=1
+    return nombres,apellidos,categorias,motivaciones,fechas,existe
 
 #Función Ejercicio 5: Busca una categoría y año y muestra el ganador. Si ha compartido premio, mostrara el nombre de los mismos.
-def PremioCompartido (nobel,year,existe,categoria):
-    existe =0
+def PremioCompartido (nobel,year,categoria,existe):
+    existe=1
+    nombres=[]
+    apellidos=[]
+    categorias=[]
     for premiado in nobel:
-        if premiado["year"]==year and premiado["category"]==categoria:
-            for laureated in premiado["laureates"]:
-                print("Nombre: ", laureated.get('firstname'))
-                print("Apellido: ", laureated.get('surname'))
-                print("Categoria: ", premiado["category"])
-                print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-                existe = 1
-    if existe == 0:
-        print ("No se han encontrado coincidencias.")
+        if not (premiado.get('laureates') is None):
+            if premiado["year"]==year and premiado["category"]==categoria:
+                for laureated in premiado["laureates"]:
+                    nombres.append(laureated.get('firstname'))
+                    apellidos.append(laureated.get('surname'))
+                    categorias.append(premiado["category"])
+        else:
+            existe=0  
+    if nombres !=[]:
+        existe=1
+    return nombres,apellidos,categorias,existe
