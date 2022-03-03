@@ -1,8 +1,6 @@
 #Funciones de lectura para el archivo nobel.json
 
 #Función Ejercicio 1: Listar las categorías de premios nobel que se han entregado.
-
-
 def ListarCategorias(nobel):
     listado=[]
     for categoria in nobel:
