@@ -69,6 +69,7 @@ while opcion !=0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados en el año introducido.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             for nombre,apellido,categoria in zip (nombres, apellidos, categorias):
                 print("Nombre: ",nombre)
@@ -87,6 +88,7 @@ while opcion !=0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados con dicho apellido.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             for nombre,apellido,categoria,motivacion,fecha in zip (nombres,apellidos,categorias,motivaciones,fechas):
                 print("\n")
@@ -98,6 +100,8 @@ while opcion !=0:
                 print("Motivación: ",motivacion)
                 print("Año: ",fecha)
                 print("- - - - - - - - - - - - - - - - - - - - - - - - ")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+
     
 
 #Opción 5 del menú
@@ -110,6 +114,7 @@ while opcion !=0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados de ese año y categoria.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:    
             for nombre,apellido,categoria in zip (nombres, apellidos, categorias):
                 print("- - - - - - PREMIADOS:- - - - -")
@@ -128,4 +133,6 @@ while opcion !=0:
     else: 
         print("La opción elegida no es válida.")
     opcion = int(input("Introduzca la opción deseada: "))
+print("- - - - - - - - - - - - - - - - - - - - - - - - ")
 print ("Hasta pronto.")
+print("- - - - - - - - - - - - - - - - - - - - - - - - ")
