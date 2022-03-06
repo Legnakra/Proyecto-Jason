@@ -38,7 +38,7 @@ while opcion !=0:
         print()
         categorias = ListarCategorias(nobel)
         for elemento in zip (categorias):
-            print (list(map(str.strip, elemento)))
+            print (elemento[0])
         print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 
 
@@ -64,12 +64,11 @@ while opcion !=0:
         fecha = input("Introduzca el año y se mostrará el nombre de los premiados y su categoría del premio: ")
         print("- - - - - - - - - - - - - - - - - - - - - - - - - PREMIADOS DE",fecha, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         print()
-        nombres, apellidos, categorias,existe =PremiadosAno (fecha,nobel,existe)
-        if existe==0:
+        nombres, apellidos, categorias =PremiadosAno (fecha,nobel)
+        if len(nombres)==0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados en el año introducido.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             for nombre,apellido,categoria in zip (nombres, apellidos, categorias):
                 print("Nombre: ",nombre)
@@ -83,12 +82,11 @@ while opcion !=0:
 #Opción 4 del menú
     elif opcion ==4:
         apellido = input("Introduzca el apellido del premiado: ")
-        nombres,apellidos,categorias,motivaciones,fechas,existe = EncontrarPremiado(apellido,nobel,existe)
-        if existe ==0:
+        nombres,apellidos,categorias,motivaciones,fechas = EncontrarPremiado(apellido,nobel)
+        if len(nombres)==0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados con dicho apellido.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:
             for nombre,apellido,categoria,motivacion,fecha in zip (nombres,apellidos,categorias,motivaciones,fechas):
                 print("\n")
@@ -100,8 +98,6 @@ while opcion !=0:
                 print("Motivación: ",motivacion)
                 print("Año: ",fecha)
                 print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
-
     
 
 #Opción 5 del menú
@@ -109,17 +105,16 @@ while opcion !=0:
         print ("Las categorías son: Economics, Literature, Chemistry, Peace, Medicine, Physics.")
         categoria = input("Introduzca una categoría: ")
         year = input ("Introduzca un año: ")
-        nombres,apellidos,categorias,existe = PremioCompartido (nobel,year,categoria,existe)
-        if existe ==0:
+        nombres,apellidos,categorias = PremioCompartido (nobel,year,categoria)
+        if len(nombres)==0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
             print("No existen premiados de ese año y categoria.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - ")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
         else:    
-            for nombre,apellido,categoria in zip (nombres, apellidos, categorias):
-                print("- - - - - - PREMIADOS:- - - - -")
-                print("- - - AÑO",year,"- - - - - - - ")
-                print("- - - CATEGORIA",categoria,"- - - - - - - ")
+            print("- - - - - - PREMIADOS:- - - - -")
+            print("- - - AÑO",year,"- - - - - - - ")
+            print("- - - CATEGORIA",categoria,"- - - - - - - ")
+            for nombre,apellido,categoria in zip (nombres, apellidos, categorias):                
                 print()
                 print("Nombre: ",nombre)
                 print("Apellido: ",apellido)
@@ -128,11 +123,21 @@ while opcion !=0:
             print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 
 
-
 #Opción 0 del menú
     else: 
         print("La opción elegida no es válida.")
+    print("\n")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - ~ ~ MENÚ ~ ~ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
+    print()
+    print("1. Listar las categorías de premios nobel que se han entregado.")
+    print("2. Cuenta el número de premiados del año introducido por teclado.")
+    print("3. Buscar el año y muestra los premiados con sus categorías y nombre.")
+    print("4. Buscar el apellido y muestra categoría, año y motivación.")
+    print("5. Busca una categoría y año y muestra el ganador. Si ha compartido premio, mostrara el nombre de los mismos.")
+    print("0. Salir.")
+    print()
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")        
     opcion = int(input("Introduzca la opción deseada: "))
-print("- - - - - - - - - - - - - - - - - - - - - - - - ")
 print ("Hasta pronto.")
-print("- - - - - - - - - - - - - - - - - - - - - - - - ")

@@ -20,8 +20,7 @@ def ContarPremiados(fecha,nobel):
 
 
 #Función Ejercicio 3: Buscar el año y muestra los premiados con sus categorías y nombre.
-def PremiadosAno (fecha,nobel,existe):
-    existe=1
+def PremiadosAno (fecha,nobel):
     nombres=[]
     apellidos=[]
     categorias=[]
@@ -32,17 +31,12 @@ def PremiadosAno (fecha,nobel,existe):
                     nombres.append(laureated.get('firstname'))
                     apellidos.append(laureated.get('surname'))
                     categorias.append(premiado["category"])
-        else:
-            existe=0  
-    if nombres !=[]:
-        existe=1
-    return nombres,apellidos,categorias,existe
+    return nombres,apellidos,categorias
 
                 
 
 #Función Ejercicio 4: Buscar el apellido y muestra categoría, año y motivación.
-def EncontrarPremiado(apellido,nobel,existe):
-    existe=1
+def EncontrarPremiado(apellido,nobel):
     nombres=[]
     apellidos=[]
     categorias=[]
@@ -57,15 +51,10 @@ def EncontrarPremiado(apellido,nobel,existe):
                     categorias.append(listado.get("category"))
                     motivaciones.append(premiado.get('motivation'))
                     fechas.append(listado.get("year"))
-        else:
-            existe=0  
-    if nombres !=[]:
-        existe=1
-    return nombres,apellidos,categorias,motivaciones,fechas,existe
+    return nombres,apellidos,categorias,motivaciones,fechas
 
 #Función Ejercicio 5: Busca una categoría y año y muestra el ganador. Si ha compartido premio, mostrara el nombre de los mismos.
-def PremioCompartido (nobel,year,categoria,existe):
-    existe=1
+def PremioCompartido (nobel,year,categoria):
     nombres=[]
     apellidos=[]
     categorias=[]
@@ -76,8 +65,4 @@ def PremioCompartido (nobel,year,categoria,existe):
                     nombres.append(laureated.get('firstname'))
                     apellidos.append(laureated.get('surname'))
                     categorias.append(premiado["category"])
-        else:
-            existe=0  
-    if nombres !=[]:
-        existe=1
-    return nombres,apellidos,categorias,existe
+    return nombres,apellidos,categorias
